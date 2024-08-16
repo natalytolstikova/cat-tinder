@@ -9,7 +9,7 @@ import { SwipeCardChildren } from '../SwipeCardChildren';
 // import { useInteractWithPeopleMutation } from '../../rtk-query';
 import { IUser, IDiscover } from '../../types';
 
-const SwipeCardSection = ({ usersToDiscover, refetch }: IDiscover) => {
+const SwipeCardSection = ({ usersToDiscover, refetch, postVoteApi }: IDiscover) => {
     // const [interact] = useInteractWithPeopleMutation({
     //     fixedCacheKey: 'interactWithPeople',
     // });
@@ -58,14 +58,14 @@ const SwipeCardSection = ({ usersToDiscover, refetch }: IDiscover) => {
     const handleSwipeUserMatching = (swipe: Animated.ValueXY, prevState: IUser[]) => {
         const isLike = Number(JSON.stringify(swipe.x)) > 0;
         const userIdReceiver = prevState?.[0]?.id;
+        const imageId = prevState?.[0].breeds[0].id;
 
         console.log('isLike: ' + isLike);
+        console.log(prevState?.[0].breeds[0].id);
 
-        // interact({
-        //     interaction: isLike ? 'like' : 'reject',
-        //     userIdReceiver,
-        //     userIdTransmitter: 1,
-        // });
+        if (isLike) {
+            postVoteApi(userIdReceiver, imageId);
+        }
     };
 
     return (

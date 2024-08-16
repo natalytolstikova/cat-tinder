@@ -15,19 +15,19 @@ export interface ISwipeCardChildren {
 
 export const SwipeCardChildren = ({ item, swipe, isFirst, renderChoice }: ISwipeCardChildren) => {
     return (
-        <Card profileImg={item.profileImg} minWidth={400} maxHeight={400} minHeight={400}>
+        <Card profileImg={item.url} minWidth={400} maxHeight={400} minHeight={400}>
             <Card.Info style={DiscoverStyleSheet.userInfo}>
                 {isFirst && renderChoice(swipe)}
                 <View>
                     <Card.Title>
-                        {item.name}, {item.age}
+                        {item.breeds[0].name}, {item.breeds[0].energy_level}
                     </Card.Title>
-                    <Card.Description>{item.description}</Card.Description>
+                    <Card.Description>{item.breeds[0].temperament}</Card.Description>
                 </View>
                 <Button
                     maxWidth={100}
                     colors={['#000000', '#2f2f2f']}
-                    text={item.distance}
+                    text={item.breeds[0].origin}
                     styles={{
                         borderRadius: 30,
                     }}

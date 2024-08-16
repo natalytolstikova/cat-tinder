@@ -1,13 +1,18 @@
-export interface IUser {
-    id: number;
-    profileImg: string;
+export interface Breed {
     name: string;
-    age: string;
-    description: string;
-    distance: string;
+    origin: string;
+    energy_level: number;
+    temperament: string;
+}
+
+export interface IUser {
+    id: string;
+    url: string;
+    breeds: Breed[];
 }
 
 export interface IDiscover {
     usersToDiscover: IUser[];
     refetch: () => void;
+    postVoteApi: () => void;
 }
